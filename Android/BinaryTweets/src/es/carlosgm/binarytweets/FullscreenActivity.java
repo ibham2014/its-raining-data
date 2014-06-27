@@ -71,10 +71,9 @@ public class FullscreenActivity extends Activity {
 			public void onReceive(Context context, Intent intent) {
 				// TODO : Improve this to allow several pins if necessary
 				TextView tv = (TextView) findViewById(R.id.fullscreen_content);
-				if(intent.getBooleanExtra(Constants.DATA_URI, false))
-					tv.setText("ONE");
-				else
-					tv.setText("ZERO");
+				String tweetText = intent.getStringExtra(Constants.DATA_URI);
+				if(tweetText != null)
+					tv.setText(tweetText);
 			}
 		};
 		LocalBroadcastManager.getInstance(this).registerReceiver(mBitsReceiver, mIntentFilter);
@@ -146,10 +145,7 @@ public class FullscreenActivity extends Activity {
 		// while interacting with the UI.
 		findViewById(R.id.dummy_button).setOnTouchListener(
 				mDelayHideTouchListener);
-		
-		// We select the textview we will update
-		TextView tv = (TextView) findViewById(R.id.fullscreen_content);
-				
+						
 		cd = new ConnectionDetector(getApplicationContext());
 		
 		// Check if Internet present
@@ -161,9 +157,7 @@ public class FullscreenActivity extends Activity {
         }
                 
         // If we are connected we connect and search (and start the service?)
-        if(isInternet) {
-        	tv.setText("Searching tweets...");
-        	        	
+        if(isInternet) {     	        	
 	        Intent mServiceIntent = new Intent(this, StreamService.class);
 			this.startService(mServiceIntent);
 			

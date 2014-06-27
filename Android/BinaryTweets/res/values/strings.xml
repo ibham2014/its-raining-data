@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">BinaryTweets</string>
+    <string name="dummy_button">Configuration</string>
+    <string name="dummy_content">It\'s raining data\n&#35;interactivosbham</string>
+
+</resources>

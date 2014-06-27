@@ -30,8 +30,8 @@ public class StreamService extends IntentService implements StatusListener {
 	/**
 	 * Consumer key and secret key to connect to the API
 	 */
-	static String TWITTER_CONSUMER_KEY = "";
-    static String TWITTER_CONSUMER_SECRET = "";
+	private String TWITTER_CONSUMER_KEY = "";
+    private String TWITTER_CONSUMER_SECRET = "";
     
     /**
      * URL for the Arduino REST API
@@ -73,6 +73,9 @@ public class StreamService extends IntentService implements StatusListener {
         builder.setApplicationOnlyAuthEnabled(true);
         
         StreamService.urlREST = Constants.API_URL;
+        
+        this.TWITTER_CONSUMER_KEY = Constants.TWITTER_CONSUMER_KEY;
+        this.TWITTER_CONSUMER_SECRET = Constants.TWITTER_CONSUMER_SECRET;
 	}
 
 	@Override
@@ -94,8 +97,13 @@ public class StreamService extends IntentService implements StatusListener {
                     StreamService.tweet = tweet.getText();
                     Log.d("STREAM", "Tweet read:" + tweet.getText());
                     
+                    mIntent.putExtra(Constants.DATA_URI, tweet.getText());
+    	    		LocalBroadcastManager.getInstance(this).sendBroadcast(mIntent);
+                    
 					this.sendBinary(tweet.getText());
 					
+					mIntent.putExtra(Constants.DATA_URI, "It's raining data\n#interactivosbham");
+    	    		LocalBroadcastManager.getInstance(this).sendBroadcast(mIntent);
                 }
             } while ((query = result.nextQuery()) != null);
     	} catch (TwitterException te) {
@@ -173,7 +181,7 @@ public class StreamService extends IntentService implements StatusListener {
 				}
 		    	
 		    	try {
-					Thread.sleep(100);
+					Thread.sleep(Constants.TIME_SLEEP);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -183,15 +191,16 @@ public class StreamService extends IntentService implements StatusListener {
 	    }
 	    
 	    String s = binary.toString();
-	    
 	    Log.d("STREAM", "Binary tweet: " + s);
 	    
+	    
+	    
 	    /**
-	     * Parse String and send calls to the API (TODO: optimise this?)
-	     */
-	    
-	    
+	     * Sending bits rather than bytes
+	     */    
 	    /***
+	    
+	    
 	    int firstPin = 12;
 	    int lastPin = 12;
 	    int pin = firstPin;
@@ -222,13 +231,6 @@ public class StreamService extends IntentService implements StatusListener {
         	pin++;
         	if(pin > lastPin)
         		pin = firstPin;
-        	
-        	// TODO: Better solution? Put time in constants at least!
-        	try {
-				Thread.sleep(500);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 	    }
 	    **/
 	}
