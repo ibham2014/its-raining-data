@@ -1,5 +1,7 @@
 # cache for current jar dependency. DO NOT EDIT.
 # format is <lastModified> <length> <SHA-1> <path>
 # Encoding is UTF-8
-1396287202065 648327 ded9acc6a9792b8f1afc470f0c9cd36d178914cd C:\Users\Carlos\workspace\appcompat_v7_2\libs\android-support-v4.jar
-1403509749882 648327 ded9acc6a9792b8f1afc470f0c9cd36d178914cd C:\Users\Carlos\workspace\BinaryTweets\libs\android-support-v4.jar
+1403654126000 349134 21297ae2bf22a0ce81c9b59992cf0693eec45d5b /Volumes/DATA/creativedev/creativeprojects/interactivos-bham-2014/its-raining-data/Android/BinaryTweets/libs/android-support-v7-appcompat.jar
+1403654126000 349134 21297ae2bf22a0ce81c9b59992cf0693eec45d5b /Volumes/DATA/creativedev/creativeprojects/interactivos-bham-2014/its-raining-data/Android/BinaryTweets/v7/appcompat/libs/android-support-v7-appcompat.jar
+1403654126000 648327 ded9acc6a9792b8f1afc470f0c9cd36d178914cd /Volumes/DATA/creativedev/creativeprojects/interactivos-bham-2014/its-raining-data/Android/BinaryTweets/libs/android-support-v4.jar
+1403654126000 648327 ded9acc6a9792b8f1afc470f0c9cd36d178914cd /Volumes/DATA/creativedev/creativeprojects/interactivos-bham-2014/its-raining-data/Android/BinaryTweets/v7/appcompat/libs/android-support-v4.jar

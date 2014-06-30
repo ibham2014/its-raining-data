@@ -11,16 +11,23 @@
          TextureView, etc.
     -->
 
+	<RelativeLayout
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:gravity="center" 
+	    android:layout_gravity="center">
+
     <TextView
         android:id="@+id/fullscreen_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:gravity="left"
         android:keepScreenOn="true"
         android:text="@string/dummy_content"
-        android:textColor="#33b5e5"
-        android:textSize="50sp"
-        android:textStyle="bold" />
+        android:textColor="#E0FFFF"
+        android:textSize="30sp"
+        android:layout_margin="24dp" />
+    </RelativeLayout>
 
     <!--
          This FrameLayout insets its children based on system windows using

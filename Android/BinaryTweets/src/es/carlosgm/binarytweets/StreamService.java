@@ -88,7 +88,8 @@ public class StreamService extends IntentService implements StatusListener {
         	OAuth2Token token = twitter.getOAuth2Token();
         	twitter.setOAuth2Token(token);        	
         	
-    		Query query = new Query(mSearchTerm); 
+    		Query query = new Query(mSearchTerm);
+    		query.setCount(Constants.NUM_TWEETS);
     		QueryResult result;
     		do {
                 result = twitter.search(query);
@@ -97,7 +98,7 @@ public class StreamService extends IntentService implements StatusListener {
                     StreamService.tweet = tweet.getText();
                     Log.d("STREAM", "Tweet read:" + tweet.getText());
                     
-                    mIntent.putExtra(Constants.DATA_URI, tweet.getText());
+                    mIntent.putExtra(Constants.DATA_URI, "<b>@" +tweet.getUser().getName() +":</b> "+ tweet.getText());
     	    		LocalBroadcastManager.getInstance(this).sendBroadcast(mIntent);
                     
 					this.sendBinary(tweet.getText());
@@ -105,7 +106,7 @@ public class StreamService extends IntentService implements StatusListener {
 					mIntent.putExtra(Constants.DATA_URI, "It's raining data\n#interactivosbham");
     	    		LocalBroadcastManager.getInstance(this).sendBroadcast(mIntent);
                 }
-            } while ((query = result.nextQuery()) != null);
+            } while (/**(query = result.nextQuery()) != null ||**/ this.keepStreaming);
     	} catch (TwitterException te) {
             te.printStackTrace();
     	}

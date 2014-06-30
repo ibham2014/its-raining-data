@@ -2,6 +2,7 @@ package es.carlosgm.binarytweets;
 
 import es.carlosgm.binarytweets.util.SystemUiHider;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
@@ -11,8 +12,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
+import android.text.Html;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -73,7 +76,7 @@ public class FullscreenActivity extends Activity {
 				TextView tv = (TextView) findViewById(R.id.fullscreen_content);
 				String tweetText = intent.getStringExtra(Constants.DATA_URI);
 				if(tweetText != null)
-					tv.setText(tweetText);
+					tv.setText(Html.fromHtml(tweetText));
 			}
 		};
 		LocalBroadcastManager.getInstance(this).registerReceiver(mBitsReceiver, mIntentFilter);
@@ -182,6 +185,7 @@ public class FullscreenActivity extends Activity {
 	 * while interacting with activity UI.
 	 */
 	View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
+		@SuppressLint("ClickableViewAccessibility")
 		@Override
 		public boolean onTouch(View view, MotionEvent motionEvent) {
 			if (AUTO_HIDE) {
